@@ -25,15 +25,14 @@ import sensors.QuadEncoder;
  * creating this project, you must also update the build.properties file in the
  * project.
  */
-public class TechnoTitan extends IterativeRobot {
+public class Robot extends IterativeRobot {
 	public static final boolean LEFT_REVERSE = false;
 	public static final boolean RIGHT_REVERSE = true;
 	
 	public static Gyro gyro;
 	
 	public static TalonSRX grabberLeft, grabberRight, elevatorTalon,
-		leftETalonSRX, rightETalonSRX,
-		leftFollow1, leftFollow2, rightFollow1, rightFollow2;
+		leftETalonSRX, rightETalonSRX;
 	
 	public static DriveTrain drive;
 	
@@ -56,6 +55,10 @@ public class TechnoTitan extends IterativeRobot {
 		leftETalonSRX.setEncoder(new QuadEncoder(leftETalonSRX, INCHES_PER_PULSE, true));
 		rightETalonSRX.setEncoder(new QuadEncoder(rightETalonSRX, INCHES_PER_PULSE, true));
 		
+		TalonSRX leftFollow1 = new TalonSRX(HWR.LEFT_DRIVE_TRAIN_MIDDLE, LEFT_REVERSE),
+				 leftFollow2 = new TalonSRX(HWR.LEFT_DRIVE_TRAIN_BACK, LEFT_REVERSE),
+				 rightFollow1 = new TalonSRX(HWR.RIGHT_DRIVE_TRAIN_MIDDLE, RIGHT_REVERSE),
+				 rightFollow2 = new TalonSRX(HWR.RIGHT_DRIVE_TRAIN_BACK, RIGHT_REVERSE);
 
 		leftETalonSRX.setupCurrentLimiting();
 		rightETalonSRX.setupCurrentLimiting();
@@ -108,6 +111,12 @@ public class TechnoTitan extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+
+		// debug
+		SmartDashboard.putNumber("Gyro angle", gyro.getAngle());
+		SmartDashboard.putNumber("Left Encoder Value", drive.getLeftEncoder().getDistance());
+		SmartDashboard.putNumber("Right Encoder Value", drive.getRightEncoder().getDistance());
 	}
 
 	/**
