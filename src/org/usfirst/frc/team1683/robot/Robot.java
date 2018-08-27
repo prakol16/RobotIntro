@@ -59,7 +59,12 @@ public class Robot extends IterativeRobot {
 				 leftFollow2 = new TalonSRX(HWR.LEFT_DRIVE_TRAIN_BACK, LEFT_REVERSE),
 				 rightFollow1 = new TalonSRX(HWR.RIGHT_DRIVE_TRAIN_MIDDLE, RIGHT_REVERSE),
 				 rightFollow2 = new TalonSRX(HWR.RIGHT_DRIVE_TRAIN_BACK, RIGHT_REVERSE);
-
+		
+		leftFollow1.follow(leftETalonSRX);
+		leftFollow2.follow(leftETalonSRX);
+		rightFollow1.follow(rightETalonSRX);
+		rightFollow2.follow(rightETalonSRX);
+		
 		leftETalonSRX.setupCurrentLimiting();
 		rightETalonSRX.setupCurrentLimiting();
 		leftFollow1.setupCurrentLimiting();

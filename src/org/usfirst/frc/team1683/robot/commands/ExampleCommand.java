@@ -8,13 +8,16 @@
 package org.usfirst.frc.team1683.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
+
 import org.usfirst.frc.team1683.robot.Robot;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ExampleCommand extends Command {
+public class ExampleCommand extends PIDCommand {
 	public ExampleCommand() {
+		super(0, 0, 0);
 		requires(Robot.drive);
 	}
 
@@ -45,5 +48,17 @@ public class ExampleCommand extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+	}
+
+	@Override
+	protected double returnPIDInput() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		// TODO Auto-generated method stub
+		
 	}
 }
